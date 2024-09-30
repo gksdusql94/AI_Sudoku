@@ -33,6 +33,19 @@ def board_to_string(board):#Converts the Sudoku board dictionary to a string for
 ### 3. Move Validation
 - `is_valid_move(board, row, col, num)`: Checks if placing a given number in a specific cell is a valid move according to Sudoku rules (row, column, and 3x3 grid checks).
 
+```python
+def is_valid_move(solve_board, row, col, num):
+    # Check if the same number appears in the same row
+    for x in range(9):
+        if solve_board[ROW[row] + COL[x]] == num and x != col:
+            return False
+
+    # Check if the same number appears in the same column
+    for y in range(9):
+        if solve_board[ROW[y] + COL[col]] == num and y != row:
+            return False
+```
+
 ### 4. Backtracking Algorithm
 - `solve_sudoku(board, row, col)`: Recursively attempts to fill the board using backtracking. If a valid configuration is found, the puzzle is solved. Otherwise, it backtracks by resetting the current cell and trying different values.
 

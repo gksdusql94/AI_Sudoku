@@ -12,6 +12,16 @@ The Sudoku board is represented as a Python dictionary, where each cell is acces
 - `board_to_string(board)`: Converts the board's current state into a string format for saving or further processing.
 
 ```python
+def print_board(board):# Prints the Sudoku board in a square grid.
+    print("-----------------")
+    for i in ROW:
+        row = ''
+        for j in COL:
+            row += (str(board[i + j]) + " ")
+        print(row)
+```
+
+```python
 def board_to_string(board):#Converts the Sudoku board dictionary to a string for writing.
     ordered_vals = []
     for r in ROW:

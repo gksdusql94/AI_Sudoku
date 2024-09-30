@@ -11,6 +11,15 @@ The Sudoku board is represented as a Python dictionary, where each cell is acces
 - `print_board(board)`: Displays the Sudoku board in a human-readable 9x9 grid format.
 - `board_to_string(board)`: Converts the board's current state into a string format for saving or further processing.
 
+```python
+def board_to_string(board):#Converts the Sudoku board dictionary to a string for writing.
+    ordered_vals = []
+    for r in ROW:
+        for c in COL:
+            ordered_vals.append(str(board[r + c]))
+    return ''.join(ordered_vals)
+```
+
 ### 3. Move Validation
 - `is_valid_move(board, row, col, num)`: Checks if placing a given number in a specific cell is a valid move according to Sudoku rules (row, column, and 3x3 grid checks).
 
@@ -65,10 +74,6 @@ def backtracking(board):#Takes a Sudoku board and returns the solved board using
     return solved_board
 ```
 
-### 6. Input/Output
-- The script supports two modes:
-  1. **Single Puzzle Mode**: Accepts a single puzzle as input through the command line.
-  2. **Batch Mode**: Reads puzzles from a text file and solves them iteratively.
 
 ## 🛠️Running the Sudoku Solver
 

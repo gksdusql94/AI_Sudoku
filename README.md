@@ -20,6 +20,18 @@ The Sudoku board is represented as a Python dictionary, where each cell is acces
 ### 5. Board Solving
 - `backtracking(board)`: Solves the given Sudoku puzzle using the `solve_sudoku()` function. It also prints whether the puzzle was successfully solved or not.
 
+```python
+def backtracking(board):#Takes a Sudoku board and returns the solved board using backtracking algorithm.
+    # Create a copy of the board to prevent modifying the original board
+    solved_board = board.copy()
+    # Attempt to solve the Sudoku puzzle
+    if solve_sudoku(solved_board, 0, 0):
+        print('Solved')
+    else:
+        print('Unsolved')
+    return solved_board
+```
+
 ### 6. Input/Output
 - The script supports two modes:
   1. **Single Puzzle Mode**: Accepts a single puzzle as input through the command line.
@@ -27,7 +39,7 @@ The Sudoku board is represented as a Python dictionary, where each cell is acces
 
 ## 🛠️Running the Sudoku Solver
 
-### 🛠Single Puzzle Mode
+### Single Puzzle Mode
 To solve a single Sudoku puzzle, provide a string of 81 digits (representing the puzzle) as input via the command line:
 
 ```bash

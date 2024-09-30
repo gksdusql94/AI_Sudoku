@@ -16,7 +16,40 @@ The Sudoku board is represented as a Python dictionary, where each cell is acces
 
 ### 4. Backtracking Algorithm
 - `solve_sudoku(board, row, col)`: Recursively attempts to fill the board using backtracking. If a valid configuration is found, the puzzle is solved. Otherwise, it backtracks by resetting the current cell and trying different values.
-  
+
+```python
+def solve_sudoku(sudoku_board, row, col):
+    #The solve_sudoku function performs backtracking recursively to solve the Sudoku puzzle.: BackTracking
+
+    # Check if we have reached the last row and column, indicating completion of the puzzle
+    BOARD_SIZE = len(ROW)
+    if row == BOARD_SIZE - 1 and col == BOARD_SIZE:
+        return True  # Return True indicates a successful backtracking
+
+    # Move to the next row if the current column has reached the end
+    if col == BOARD_SIZE:
+        row += 1
+        col = 0
+
+    # If the current cell is already populated, move to the next column
+    if sudoku_board[ROW[row] + COL[col]] > 0:
+        return solve_sudoku(sudoku_board, row, col + 1)
+
+    # Try placing numbers from 1 to 9 in the current empty cell
+    for num in range(1, BOARD_SIZE + 1):
+        # Check if it is valid to place the number in the current position
+        if is_valid_move(sudoku_board, row, col, num):
+            # If it's valid, assign the number to the current cell
+            sudoku_board[ROW[row] + COL[col]] = num
+            # Recursively try to solve the puzzle for the next column
+            if solve_sudoku(sudoku_board, row, col + 1):
+                return True
+            # If the puzzle cannot be solved for the next column, backtrack by resetting the current cell to 0
+            sudoku_board[ROW[row] + COL[col]] = 0
+
+    # If no number leads to a valid solution, return False, indicating that the puzzle cannot be solved with the current configuration
+    return False  # Return False indicates failure
+```
 ### 5. Board Solving
 - `backtracking(board)`: Solves the given Sudoku puzzle using the `solve_sudoku()` function. It also prints whether the puzzle was successfully solved or not.
 
